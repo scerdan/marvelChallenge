@@ -55,8 +55,6 @@ fun MarvelScreen(
             .fillMaxHeight()
             .background(Color.Gray)
     ) {
-        load(loading = loadingState.value)
-
         LazyColumn() {
             if (arrListado != null) {
                 items(arrListado) { item ->
@@ -69,6 +67,7 @@ fun MarvelScreen(
                                 navController.navigate("DetailScreen/${item.id}")
                             },
                     ) {
+                        load(loading = loadingState.value)
                         Column {
                             Image(
                                 modifier = Modifier
@@ -108,9 +107,10 @@ fun fff(item: Result): String {
 @Composable
 fun load(loading: Boolean) {
     if (true) {
-        Box(
+        Column(
             modifier = Modifier.fillMaxSize(1f),
-            Alignment.Center
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CircularProgressIndicator(
                 color = primaryMarvel,

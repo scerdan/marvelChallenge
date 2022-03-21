@@ -78,7 +78,7 @@ fun ShowDetails(detailData: DetailParser) {
             fontWeight = FontWeight.Normal,
             modifier = Modifier
                 .fillMaxWidth(0.8f)
-                .padding(3.dp),
+                .padding(5.dp),
             color = secondaryMarvel
         )
         Image(
