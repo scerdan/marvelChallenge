@@ -4,6 +4,10 @@
 ## Description
 En ésta ocasión les traigo una app llamada Marvel Challenge dónde podemos vizualizar en un primer momento un sencillo Splash y posteriormente un listado de personajes. De los cuales podremos vislumbrar sus respectivos detalles.-
 
+| Splash Screen | Home Screen | Detail Screen |
+-------------------|-------------------|----------------
+|![Splash Screen](https://github.com/scerdan/marvelChallenge/blob/master/preview/Splash.jpg) | ![Home Screen](https://github.com/scerdan/marvelChallenge/blob/master/preview/Home.jpg) | ![EDetail Screen](https://github.com/scerdan/marvelChallenge/blob/master/preview/Detail.jpg) |
+
 ## Previews
 <p align="center">
 <img src="https://github.com/scerdan/marvelChallenge/blob/master/preview/preview.gif" width="270" height="600" />
