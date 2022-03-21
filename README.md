@@ -13,7 +13,7 @@ En ésta ocasión les traigo una app llamada Marvel Challenge dónde podemos viz
 <img src="https://github.com/scerdan/marvelChallenge/blob/master/preview/preview.gif" width="270" height="600" />
 </p>
 
-## Tecnologías implementadas
+## Implemented technologies
 
 * [Kotlin](https://kotlinlang.org/)
 * [Dagger 2](https://github.com/google/dagger)
