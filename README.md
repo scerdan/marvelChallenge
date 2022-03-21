@@ -29,7 +29,7 @@ La [API MARVEL COMICS](https://developer.marvel.com/docs) es una herramienta que
 - GET /v1/public/characters
 - GET /v1/public/characters/{characterId}
 
-## License [License](https://developer.marvel.com/terms)
+## License [![License](https://img.shields.io/badge/License-MARVEL-red.svg)](https://developer.marvel.com/terms)
 
 MARVEL License 
 Copyright (c) 2022 sCerdan
