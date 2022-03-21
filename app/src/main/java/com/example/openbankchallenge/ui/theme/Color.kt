@@ -2,7 +2,6 @@ package com.example.openbankchallenge.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val secondaryMarvel = Color(0xFFFFFFFF)
+val blackMarvel = Color(0xFF000000)
+val primaryMarvel = Color(0xFFF0131E)
