@@ -13,6 +13,18 @@ En ésta ocasión les traigo una app llamada Marvel Challenge dónde podemos viz
 <img src="https://github.com/scerdan/marvelChallenge/blob/master/preview/preview.gif" width="270" height="600" />
 </p>
 
+## How to use this project
+
+You can use Android Studio or Intellij to work with this repository.
+First thing you will need to compile this project is to get an [API Key and hash from Marvel](https://marvel.com/signin?referer=https%3A%2F%2Fdeveloper.marvel.com%2Faccount)
+
+```Clean_Marvel_Kotlin/app/build.gradle
+  buildConfigField "String", "PRIVATE_API_KEY_VALUE", '"your-private-apikey"'
+  buildConfigField "String", "PUBLIC_API_KEY_VALUE", '"your-public-apikey"'
+```
+
+The `Kotlin` plugin for Android Studio is also required.
+
 ## Implemented technologies
 
 * [Kotlin](https://kotlinlang.org/)
