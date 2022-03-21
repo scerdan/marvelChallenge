@@ -22,14 +22,14 @@ En ésta ocasión les traigo una app llamada Marvel Challenge dónde podemos viz
 
 ## Marvel Comics API
 
-La [API MARVEL COMICS](https://developer.marvel.com/docs) La API de Marvel Comics es una herramienta que ayuda a los desarrolladores de todo el mundo a crear sitios web y aplicaciones asombrosas, extrañas e increíbles utilizando los datos de los más de 70 años de la era del cómic de Marvel.
+La [API MARVEL COMICS](https://developer.marvel.com/docs) es una herramienta que ayuda a los desarrolladores de todo el mundo a crear sitios web y aplicaciones asombrosas, extrañas e increíbles utilizando los datos de los más de 70 años de la era del cómic de Marvel.
 
 ## Endpoints
 
 - GET /v1/public/characters
 - GET /v1/public/characters/{characterId}
 
-## License [![License](https://developer.marvel.com/terms)
+## License [License](https://developer.marvel.com/terms)
 
 MARVEL License 
 Copyright (c) 2022 sCerdan
