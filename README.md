@@ -6,7 +6,7 @@ En ésta ocasión les traigo una app llamada Marvel Challenge dónde podemos viz
 
 ## Previews
 <p align="center">
-<img src="https://github.com/scerdan/" width="270" height="600" />
+<img src="https://github.com/scerdan/marvelChallenge/blob/master/preview/Record_2022-03-21-12-42-49_13236372000182065c11996fbb725f72.gif" width="270" height="600" />
 </p>
 
 ## Tecnologías implementadas
