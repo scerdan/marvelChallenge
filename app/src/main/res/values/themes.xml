@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.OpenBankChallenge" parent="android:Theme.Material.NoActionBar.Fullscreen">
+    <style name="Theme.MyChallenge" parent="android:Theme.Material.NoActionBar.Fullscreen">
         <item name="android:statusBarColor">@color/redM</item>
     </style>
 </resources>
