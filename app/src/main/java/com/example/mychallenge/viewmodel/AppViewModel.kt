@@ -10,10 +10,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.mychallenge.model.character.Character
 import com.example.mychallenge.model.details.DetailCharacter
 import com.example.mychallenge.repository.AppRepo
+import com.example.mychallenge.utils.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,40 +26,38 @@ class AppViewModel @Inject constructor(private val repo: AppRepo) : ViewModel() 
     private val _responseCharacterDetail = MutableLiveData<Response<DetailCharacter>>()
     val loading_State = mutableStateOf(false)
 
-    fun getData(offset: String): LiveData<Response<Character>> {
-        loading_State.value = true
-        viewModelScope.launch(Dispatchers.IO) {
-            val Data = repo.getCharacters(offset)
-            try {
-                _response.postValue(Data)
-                loading_State.value = false
 
-                Log.e(Data.code().toString(), Data.message())
+    private val _listCharacter = MutableStateFlow<ResourceState<Character>>(ResourceState.Loading())
+    val listCharacter: StateFlow<ResourceState<Character>> = _listCharacter
 
-            } catch (e: Exception) {
-                loading_State.value = true
-                Log.e(TAG, "launchJob: Exception: ${e}, ${e.cause}")
-                e.printStackTrace()
-            } finally {
-                Log.d(TAG, "launchJob: finally called.")
-            }
-        }
-        return _response
+    init {
+        fetch()
     }
 
-    fun getDetailData(id: String): LiveData<Response<DetailCharacter>> {
-        viewModelScope.launch(Dispatchers.IO) {
-            val characterData = repo.getDetailCharacter(id)
-            try {
-                _responseCharacterDetail.postValue(characterData)
-                Log.e(characterData.code().toString(), characterData.message())
-            } catch (e: Exception) {
-                Log.e(TAG, "launchJob: Exception: ${e}, ${e.cause}")
-                e.printStackTrace()
-            } finally {
-                Log.d(TAG, "launchJob: finally called.")
+    private fun fetch() = viewModelScope.launch {
+        safeFetch()
+    }
+
+    private suspend fun safeFetch() {
+
+        try {
+            val response = repo.getCharacters("1")
+            _listCharacter.value = handleResponse(response)
+        } catch (t: Throwable) {
+            when (t) {
+                is IOException -> _listCharacter.value = ResourceState.Error("Error Conection")
+                else -> _listCharacter.value = ResourceState.Error("Failed Data Conversion")
             }
         }
-        return _responseCharacterDetail
+
+    }
+
+    private fun handleResponse(response: Response<Character>): ResourceState<Character> {
+        if (response.isSuccessful) {
+            response.body()?.let { values ->
+                return ResourceState.Success(values)
+            }
+        }
+        return ResourceState.Error(response.message())
     }
 }

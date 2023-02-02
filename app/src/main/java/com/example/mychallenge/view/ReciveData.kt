@@ -1,5 +1,6 @@
 package com.example.mychallenge.view
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,9 +12,8 @@ import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,11 +35,16 @@ fun ReciveData(
     viewModel: AppViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
-    val view by viewModel.getData("1").observeAsState()
-    val loading = viewModel.loading_State
+    val view by viewModel.listCharacter.collectAsState()
+    //val loading = viewModel.loading_State
 
-    val data = view?.body()?.data?.results
-    MarvelScreen(arrListado = data, navController = navController, loading)
+
+    val result = view.data?.data?.results
+
+    Log.e("RESULTADO ==>", result.toString())
+
+
+    MarvelScreen(arrListado = result, navController = navController, true)
 }
 
 @ExperimentalCoilApi
@@ -47,7 +52,7 @@ fun ReciveData(
 fun MarvelScreen(
     arrListado: ArrayList<Result>?,
     navController: NavHostController,
-    loadingState: MutableState<Boolean>
+    loadingState: Boolean
 ) {
     Box(
         modifier = Modifier
@@ -67,7 +72,7 @@ fun MarvelScreen(
                                 navController.navigate("DetailScreen/${item.id}")
                             },
                     ) {
-                        load(loading = loadingState.value)
+                        load(loading = loadingState)
                         Column {
                             Image(
                                 modifier = Modifier
