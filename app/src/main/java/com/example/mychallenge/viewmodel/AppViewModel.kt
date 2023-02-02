@@ -22,24 +22,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppViewModel @Inject constructor(private val repo: AppRepo) : ViewModel() {
-    private val _response = MutableLiveData<Response<Character>>()
-    private val _responseCharacterDetail = MutableLiveData<Response<DetailCharacter>>()
-    val loading_State = mutableStateOf(false)
-
 
     private val _listCharacter = MutableStateFlow<ResourceState<Character>>(ResourceState.Loading())
     val listCharacter: StateFlow<ResourceState<Character>> = _listCharacter
+
+    private val _listDetail = MutableStateFlow<ResourceState<DetailCharacter>>(ResourceState.Loading())
+    val listDetail : StateFlow<ResourceState<DetailCharacter>> = _listDetail
 
     init {
         fetch()
     }
 
     private fun fetch() = viewModelScope.launch {
-        safeFetch()
+        callCharacters()
     }
 
-    private suspend fun safeFetch() {
-
+    private suspend fun callCharacters() {
         try {
             val response = repo.getCharacters("1")
             _listCharacter.value = handleResponse(response)
@@ -49,10 +47,21 @@ class AppViewModel @Inject constructor(private val repo: AppRepo) : ViewModel() 
                 else -> _listCharacter.value = ResourceState.Error("Failed Data Conversion")
             }
         }
-
     }
 
-    private fun handleResponse(response: Response<Character>): ResourceState<Character> {
+    private suspend fun callDetails(id: String = "") {
+        try {
+            val response = repo.getDetailCharacter(id)
+            _listDetail.value = handleResponse(response)
+        } catch (t: Throwable) {
+            when (t) {
+                is IOException -> _listCharacter.value = ResourceState.Error("Error Conection")
+                else -> _listCharacter.value = ResourceState.Error("Failed Data Conversion")
+            }
+        }
+    }
+
+    private fun <T> handleResponse(response: Response<T>): ResourceState<T> {
         if (response.isSuccessful) {
             response.body()?.let { values ->
                 return ResourceState.Success(values)

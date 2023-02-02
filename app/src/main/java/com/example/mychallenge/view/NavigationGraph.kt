@@ -30,7 +30,7 @@ fun NavigationGraph(viewModel: AppViewModel) {
             )
         )
         {
-            //DetailScreen(it, viewModel)
+            DetailScreen(it, viewModel)
         }
     }
 }
